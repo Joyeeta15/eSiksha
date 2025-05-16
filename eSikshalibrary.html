@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>e Sikhsha - E-Books</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex flex-col min-h-screen">
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4">
+    <div class="container mx-auto px-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold">e Sikhsha</h1>
+      <nav>
+        <a href="#" class="px-4 hover:underline">Home</a>
+        <a href="#" class="px-4 hover:underline">Books</a>
+        <a href="#" class="px-4 hover:underline">About</a>
+        <a href="#" class="px-4 hover:underline">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow container mx-auto px-4 py-8">
+    <!-- Search Bar -->
+    <div class="mb-8">
+      <form class="flex justify-center">
+        <input type="text" id="search" placeholder="Search e-books..." class="w-full max-w-lg p-3 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <button type="submit" class="bg-blue-600 text-white p-3 rounded-r-lg hover:bg-purple-600 transition">Search</button>
+      </form>
+    </div>
+
+    <!-- E-Books Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <!-- E-Book Card 1 -->
+      <a href="#" class="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition">
+        <img src="https://via.placeholder.com/150x200" alt="E-Book Cover" class="w-full h-48 object-cover rounded mb-4">
+        <h3 class="text-lg font-semibold text-gray-800">The Great Gatsby</h3>
+        <p class="text-gray-600">F. Scott Fitzgerald</p>
+      </a>
+      <!-- E-Book Card 2 -->
+      <a href="#" class="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition">
+        <img src="https://via.placeholder.com/150x200" alt="E-Book Cover" class="w-full h-48 object-cover rounded mb-4">
+        <h3 class="text-lg font-semibold text-gray-800">1984</h3>
+        <p class="text-gray-600">George Orwell</p>
+      </a>
+      <!-- E-Book Card 3 -->
+      <a href="#" class="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition">
+        <img src="https://via.placeholder.com/150x200" alt="E-Book Cover" class="w-full h-48 object-cover rounded mb-4">
+        <h3 class="text-lg font-semibold text-gray-800">Pride and Prejudice</h3>
+        <p class="text-gray-600">Jane Austen</p>
+      </a>
+      <!-- E-Book Card 4 -->
+      <a href="#" class="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition">
+        <img src="https://via.placeholder.com/150x200" alt="E-Book Cover" class="w-full h-48 object-cover rounded mb-4">
+        <h3 class="text-lg font-semibold text-gray-800">To Kill a Mockingbird</h3>
+        <p class="text-gray-600">Harper Lee</p>
+      </a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4">
+    <div class="container mx-auto px-4 text-center">
+      <p>© 2025 e Sikhsha. All rights reserved.</p>
+      <p class="mt-2">
+        <a href="#" class="px-2 hover:underline">Privacy Policy</a> |
+        <a href="#" class="px-2 hover:underline">Terms of Service</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Basic search functionality (client-side placeholder)
+    document.querySelector('form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const query = document.getElementById('search').value.toLowerCase();
+      const books = document.querySelectorAll('.grid a');
+      books.forEach(book => {
+        const title = book.querySelector('h3').textContent.toLowerCase();
+        const author = book.querySelector('p').textContent.toLowerCase();
+        book.style.display = (title.includes(query) || author.includes(query)) ? 'block' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>
