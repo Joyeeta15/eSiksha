@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up - e Sikhsha</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth-compat.js"></script>
+</head>
+<body class="bg-gray-100 flex flex-col min-h-screen justify-between">
+
+  <!-- Header -->
+  <header class="bg-blue-600 text-white py-4">
+    <div class="container mx-auto px-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold">e Sikhsha</h1>
+      <nav>
+        <a href="index.html" class="px-4 hover:underline">Login</a>
+        <a href="#" class="px-4 hover:underline">Books</a>
+        <a href="#" class="px-4 hover:underline">About</a>
+        <a href="#" class="px-4 hover:underline">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Sign Up Form -->
+  <main class="flex-grow flex flex-col items-center justify-center py-8">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+      <h2 class="text-2xl font-bold text-center mb-6">Create Your Account</h2>
+      <form onsubmit="return signUp()">
+        <div class="mb-4">
+          <label for="signupName" class="block text-gray-700 mb-2">Full Name</label>
+          <input type="text" id="signupName" class="w-full p-3 border rounded" required>
+        </div>
+        <div class="mb-4">
+          <label for="signupEmail" class="block text-gray-700 mb-2">Email</label>
+          <input type="email" id="signupEmail" class="w-full p-3 border rounded" required>
+        </div>
+        <div class="mb-6">
+          <label for="signupPassword" class="block text-gray-700 mb-2">Password</label>
+          <input type="password" id="signupPassword" class="w-full p-3 border rounded" required>
+        </div>
+        <button type="submit" class="w-full bg-green-600 text-white p-3 rounded hover:bg-green-700 transition">Sign Up</button>
+      </form>
+      <p class="text-center text-sm text-gray-600 mt-4">
+        Already have an account?
+        <a href="index.html" class="text-blue-600 hover:underline font-medium">Log in</a>
+      </p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-blue-600 text-white py-4">
+    <div class="container mx-auto px-4 text-center">
+      <p>© 2025 e Sikhsha. All rights reserved.</p>
+      <p class="mt-2">
+        <a href="#" class="px-2 hover:underline">Privacy Policy</a> |
+        <a href="#" class="px-2 hover:underline">Terms of Service</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Firebase Setup -->
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAic-E3lvHIWcq8r9BqKO14-sfXv4Ez7vE",
+      authDomain: "e-siksha-a7b9b.firebaseapp.com",
+      databaseURL: "https://e-siksha-a7b9b-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "e-siksha-a7b9b",
+      storageBucket: "e-siksha-a7b9b.appspot.com",
+      messagingSenderId: "802350015281",
+      appId: "1:802350015281:web:65597a4635b36e78788610"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    function signUp() {
+      const name = document.getElementById("signupName").value.trim();
+      const email = document.getElementById("signupEmail").value.trim();
+      const password = document.getElementById("signupPassword").value;
+
+      if (name && email && password) {
+        auth.createUserWithEmailAndPassword(email, password)
+          .then((userCredential) => {
+            const user = userCredential.user;
+            return firebase.database().ref("users").child(user.uid).set({
+              name: name,
+              email: email,
+              timestamp: Date.now()
+            });
+          })
+          .then(() => {
+            alert("Sign Up successful! ");
+            window.location.href = "esikshalibrary.html";
+          })
+          .catch((error) => {
+            alert("Sign Up Error: " + error.message);
+          });
+      } else {
+        alert("Please fill in all fields.");
+      }
+      return false;
+    }
+  </script>
+</body>
+</html>
