@@ -133,7 +133,7 @@
           }, 2000);
         }, 5000);
       } else {
-        mainContent.classList.remove('hidden');
+        mainContent.classList.remove('hidden
       }
     };
 
@@ -144,6 +144,7 @@
       if (email && password) {
         auth.signInWithEmailAndPassword(email, password)
           .then(() => {
+            alert("log in successful!");
             window.location.href = "esikshalibrary.html";
           })
           .catch((error) => {
