@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>e Sikhsha - E-Books</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth-compat.js"></script>
 </head>
 <body class="bg-gray-100 flex flex-col min-h-screen">
+
   <!-- Header -->
   <header class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4">
     <div class="container mx-auto px-4 flex justify-between items-center">
       <h1 class="text-2xl font-bold">e Sikhsha</h1>
-      <nav>
-        <a href="#" class="px-4 hover:underline">Home</a>
-        <a href="#" class="px-4 hover:underline">Books</a>
-        <a href="#" class="px-4 hover:underline">About</a>
-        <a href="#" class="px-4 hover:underline">Contact</a>
-      </nav>
+      <div class="flex items-center gap-4">
+        <nav class="hidden sm:flex">
+          <a href="#" class="px-4 hover:underline">Home</a>
+          <a href="#" class="px-4 hover:underline">Books</a>
+          <a href="#" class="px-4 hover:underline">About</a>
+          <a href="#" class="px-4 hover:underline">Contact</a>
+        </nav>
+        <button onclick="logOut()" class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded text-sm font-medium">Logout</button>
+      </div>
     </div>
   </header>
 
@@ -36,36 +43,41 @@
       <a href="https://www.lpude.in/SLMs/Master%20of%20Computer%20Applications/Sem_1/DECAP010_PROGRAMMING_IN_C.pdf" class="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition">
         <img src="https://techworm.net/programming/wp-content/uploads/2018/09/c-programming-1.png" alt="E-Book Cover" class="w-full h-48 object-cover rounded mb-4">
         <h3 class="text-lg font-semibold text-gray-800">Programming in C</h3>
-        <p class="text-gray-600"> Dr.Prikshat Kumar Angra</p>
+        <p class="text-gray-600">Dr. Prikshat Kumar Angra</p>
       </a>
+
       <!-- E-Book Card 2 -->
       <a href="https://public.websites.umich.edu/~bielajew/ENG101/book.pdf" class="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition">
         <img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20230304231205/C-Language2.png" alt="E-Book Cover" class="w-full h-48 object-cover rounded mb-4">
         <h3 class="text-lg font-semibold text-gray-800">Introduction to Computers and Programming using C++</h3>
-        <p class="text-gray-600">Alex F Bielajew, The University of Michigan</p>
+        <p class="text-gray-600">Alex F. Bielajew</p>
       </a>
+
       <!-- E-Book Card 3 -->
       <a href="https://fangohr.github.io/introduction-to-python-for-computational-science-and-engineering/book.pdf" class="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition">
         <img src="https://tse2.mm.bing.net/th?id=OIP.ogayJi35G4zPwur1FipZ1gHaEK&pid=Api&P=0&h=180" alt="E-Book Cover" class="w-full h-48 object-cover rounded mb-4">
-        <h3 class="text-lg font-semibold text-gray-800">Introduction to Python for Computational Science and Engineering</h3>
+        <h3 class="text-lg font-semibold text-gray-800">Python for Computational Science</h3>
         <p class="text-gray-600">Hans Fangohr</p>
       </a>
+
       <!-- E-Book Card 4 -->
       <a href="https://math.hws.edu/eck/cs124/downloads/javanotes9-linked.pdf" class="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition">
         <img src="https://content.techgig.com/photo/77766881/4-tips-to-effectively-understand-java-programming-language.jpg?142209" alt="E-Book Cover" class="w-full h-48 object-cover rounded mb-4">
-        <h3 class="text-lg font-semibold text-gray-800">Introduction to Programming Using Java</h3>
-        <p class="text-gray-600">David J.Eck,Hobart and William Smith Colleges</p>
+        <h3 class="text-lg font-semibold text-gray-800">Programming Using Java</h3>
+        <p class="text-gray-600">David J. Eck</p>
       </a>
+
       <!-- E-Book Card 5 -->
       <a href="https://wtf.tw/ref/duckett.pdf" class="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition">
         <img src="https://wallpapercave.com/wp/wp2742499.jpg" alt="E-Book Cover" class="w-full h-48 object-cover rounded mb-4">
-        <h3 class="text-lg font-semibold text-gray-800">HTML & CSS : Design and Build Websites</h3>
+        <h3 class="text-lg font-semibold text-gray-800">HTML & CSS: Design and Build Websites</h3>
         <p class="text-gray-600">Jon Duckett</p>
       </a>
+
       <!-- E-Book Card 6 -->
       <a href="https://people.cs.vt.edu/~shaffer/Book/C++3e20100119.pdf" class="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition">
         <img src="https://i.ytimg.com/vi/9pKcYWQEB_s/maxresdefault.jpg" alt="E-Book Cover" class="w-full h-48 object-cover rounded mb-4">
-        <h3 class="text-lg font-semibold text-gray-800">A Practical Introduction to Data Structures and Algorithm Analysis</h3>
+        <h3 class="text-lg font-semibold text-gray-800">Data Structures and Algorithms in C++</h3>
         <p class="text-gray-600">Clifford A. Shaffer</p>
       </a>
     </div>
@@ -82,18 +94,24 @@
     </div>
   </footer>
 
+  <!-- Firebase + Logout Script -->
   <script>
-    // Basic search functionality (client-side placeholder)
-    document.querySelector('form').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const query = document.getElementById('search').value.toLowerCase();
-      const books = document.querySelectorAll('.grid a');
-      books.forEach(book => {
-        const title = book.querySelector('h3').textContent.toLowerCase();
-        const author = book.querySelector('p').textContent.toLowerCase();
-        book.style.display = (title.includes(query) || author.includes(query)) ? 'block' : 'none';
+    const firebaseConfig = {
+      apiKey: "AIzaSyAic-E3lvHIWcq8r9BqKO14-sfXv4Ez7vE",
+      authDomain: "e-siksha-a7b9b.firebaseapp.com",
+      projectId: "e-siksha-a7b9b",
+      appId: "1:802350015281:web:65597a4635b36e78788610"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    function logOut() {
+      auth.signOut().then(() => {
+        window.location.href = "index.html"; // go back to login
+      }).catch((error) => {
+        alert("Logout Error: " + error.message);
       });
-    });
+    }
   </script>
 </body>
 </html>
