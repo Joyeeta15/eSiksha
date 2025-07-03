@@ -144,7 +144,7 @@
       if (email && password) {
         auth.signInWithEmailAndPassword(email, password)
           .then(() => {
-            
+            alert("Log In successful! ");
             window.location.href = "esikshalibrary.html";
           })
           .catch((error) => {
